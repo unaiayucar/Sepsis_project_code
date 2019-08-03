@@ -1,3 +1,7 @@
+/*
+Code belongs to @alistairewj
+from repo: https://github.com/MIT-LCP/mimic-code
+*/
 -- -------------------------------------------------------------------------------
 --
 -- Create the MIMIC-III tables
