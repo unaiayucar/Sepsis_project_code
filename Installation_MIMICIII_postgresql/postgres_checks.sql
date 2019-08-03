@@ -1,3 +1,7 @@
+/*
+Code belongs to @alistairewj
+from repo: https://github.com/MIT-LCP/mimic-code
+*/
 -- this query runs a few simple checks to make sure the database has loaded in OK
 -- These checks are designed for MIMIC-III v1.4
 
