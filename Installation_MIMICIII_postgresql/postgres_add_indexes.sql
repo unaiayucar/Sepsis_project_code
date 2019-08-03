@@ -1,3 +1,7 @@
+/*
+Code belongs to @alistairewj
+from repo: https://github.com/MIT-LCP/mimic-code
+*/
 -- ----------------------------------------------------------------
 --
 -- This is a script to add the MIMIC-III indexes for Postgres.
