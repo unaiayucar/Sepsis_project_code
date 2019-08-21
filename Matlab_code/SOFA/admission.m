@@ -1,4 +1,6 @@
-function [intervals, start_time, ad_counter, out_time] = admission(hadm_id, ad_counter, admission_table)
+function [intervals, start_time, ad_counter, out_time] ...
+    = admission(hadm_id, ad_counter, admission_table)
+
     ad_hadm_id = admission_table(ad_counter,3).hadm_id;
     intervals = 0;    
     T = '15:00';

@@ -6,7 +6,11 @@ loading = tic; % Begining PAIR 1 for whole measure time
 % FOR RESPIRATION
 tic % Measures PaO2/FiO2 measure time
 disp('IMPORTING PaO2/FiO2 non ventilation...');
+FIO2_table = readtable('data\fio_lab_sofa.csv');
+FIO2_chart_table = readtable('data\fio2_chart_sofa.csv');
+PO2_table = readtable('data\po2_sofa.csv');
 disp('IMPORTING PaO2/FiO2 ventilation...');
+ventilation_table = readtable('data\ventilation_asistance_sofa.csv');
 toc % closes PaO2/FiO2 measure time
 % FOR NEUROLOGICAL
 tic % Measures Glasgow Coma measure time
@@ -20,10 +24,15 @@ toc % closes Glasgow Coma measure time
 % FOR CARDIOVASCULAR
 tic % Measures MAP measure time
 disp('IMPORTING Mean Arterial Blood Preassure...');
+mbp_table = readtable('data\meanBP_sofa.csv');
 disp('IMPORTING Dopamine...');
+dopamine_table = readtable('data\dopamine_sofa.csv');
 disp('IMPORTING Epinephrine...');
+dobutamine_table = readtable('data\dobutamine_sofa.csv');
 disp('IMPORTING Norepinephrine...');
+norepinephrine_table = readtable('data\norepinephrine_sofa.csv');
 disp('IMPORTING Dobutamine...');
+epinephrine_table = readtable('data\epinephrine_sofa.csv');
 toc % closes MAP measure time
 % tic % Measures Vassopresor measure time
 % disp('IMPORTING Vassopresor Information...');
@@ -44,6 +53,9 @@ disp('IMPORTING Creatinine Level...');
 creatinine_table = readtable('data\creatinine_sofa.csv');
 disp('IMPORTING Urine Output...');
 toc % closes Cratinine measure time
+
+% PATIENTS WEIGHT
+weight_table = readtable('data\weights_sofa.csv');
 
 %% IMPORT ADULT TABLE AND SEPSIS TABLE FOR BERIFICATION
 tic % Measures Sepsis measure time
