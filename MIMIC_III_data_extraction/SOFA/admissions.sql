@@ -1,0 +1,5 @@
+DROP MATERIALIZED VIEW IF EXISTS admissions_view CASCADE;
+CREATE MATERIALIZED VIEW admissions_view as
+SELECT *
+FROM admissions
+ORDER BY hadm_id;
