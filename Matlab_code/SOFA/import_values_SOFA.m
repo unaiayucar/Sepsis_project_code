@@ -6,7 +6,7 @@ loading = tic; % Begining PAIR 1 for whole measure time
 % FOR RESPIRATION
 tic % Measures PaO2/FiO2 measure time
 disp('IMPORTING PaO2/FiO2 non ventilation...');
-FIO2_table = readtable('data\fio_lab_sofa.csv');
+FIO2_table = readtable('data\fio_lab.csv');
 FIO2_chart_table = readtable('data\fio2_chart.csv');
 PO2_table = readtable('data\po2.csv');
 disp('IMPORTING PaO2/FiO2 ventilation...');

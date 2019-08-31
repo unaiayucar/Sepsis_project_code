@@ -1,7 +1,0 @@
-DROP MATERIALIZED VIEW IF EXISTS gcs_motor CASCADE;
-CREATE MATERIALIZED VIEW gcs_motor as
-
-select subject_id, hadm_id, charttime, value, valuenum, itemid, icustay_id
-from chartevents
-where itemid in (454,223901)
-order by hadm_id, charttime
