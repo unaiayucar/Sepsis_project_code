@@ -22,14 +22,12 @@ measurement(9,1:intervals) = 0;
 measurement(10,1:intervals) = 115;
 % platelet standard
 measurement(11,1:intervals) = 300;% M (*10^3)
-% fio2 chart standard
+% fio2 standard
 measurement(12,1:intervals) = 21; % in percentage %
-% fio2 lab standard
-measurement(13,1:intervals) = 21; % in percentage %
 % PO2 standard
-measurement(14,1:intervals) = 85; % milimeters of mercury
+measurement(13,1:intervals) = 85; % milimeters of mercury
 % ventilation standard
-measurement(15,1:intervals) = 0;
+measurement(14,1:intervals) = 0;
 % urine output standard
-measurement(16,1:intervals) = 0.5; % internet says (o.5mL/kg/h)
+measurement(15,1:intervals) = 0.5; % internet says (o.5mL/kg/h)
 end

@@ -6,11 +6,10 @@ loading = tic; % Begining PAIR 1 for whole measure time
 % FOR RESPIRATION
 tic % Measures PaO2/FiO2 measure time
 disp('IMPORTING PaO2/FiO2 non ventilation...');
-FIO2_table = readtable('data\fio_lab.csv');
-FIO2_chart_table = readtable('data\fio2_chart.csv');
+FIO2_table = readtable('data\fio2.csv');
 PO2_table = readtable('data\po2.csv');
 disp('IMPORTING PaO2/FiO2 ventilation...');
-ventilation_table = readtable('data\ventilation_asistance.csv');
+ventilation_table = readtable('data\ventdurations.csv');
 toc % closes PaO2/FiO2 measure time
 % FOR NEUROLOGICAL
 tic % Measures Glasgow Coma measure time
