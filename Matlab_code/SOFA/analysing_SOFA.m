@@ -70,7 +70,7 @@ while(i == 0)
      =admission(hadm_id_under_analysis,admissions_counter,admission_table);
     % matrix to store measurements
     measurements = standard_measures(intervals);
-    parfor all_the_different_parameters = 1:16
+    parfor all_the_different_parameters = 1:15
         % generate creatinine data
         if all_the_different_parameters == 1
             [measurements(all_the_different_parameters,:),...
@@ -240,14 +240,14 @@ while(i == 0)
        new_counter = new_counter + 1; 
     end
     % plot results
-    plot_function(intervals, sofa_score, sepsis_flag, counter)
+    %plot_function(intervals, sofa_score, sepsis_flag, counter)
     % stop counter for debugging
-%     if counter == 5
-%        i = 1; 
-%     end
+    if counter == 7678
+       a = 1; 
+    end
     % This is for finishing the analysis
     counter = counter + 1;
-    if counter == 7%37590        
+    if counter == 37590        
        i = 1; 
     end
 end
