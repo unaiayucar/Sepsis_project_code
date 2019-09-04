@@ -30,5 +30,7 @@ function [sepsis_flag, sepsis_counter] ...
               end          
            end
        end    
-    end  
+    else
+        sepsis_flag = 0;
+    end
 end

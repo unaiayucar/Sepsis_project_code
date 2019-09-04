@@ -13,7 +13,7 @@ adults_counter = 0;
 % Size of the tables
 [bilirubin_rows, bilirubin_columns] = size(bilirubin_table);
 % Generating parameter counters
-
+tic
 % RESPIRATION
 fio2_counter = 1;
 po2_counter = 1;
@@ -242,14 +242,15 @@ while(i == 0)
     % plot results
     %plot_function(intervals, sofa_score, sepsis_flag, counter)
     % stop counter for debugging
-    if counter == 7678
-       a = 1; 
-    end
+%     if counter == 7678
+%        a = 1; 
+%     end
     % This is for finishing the analysis
     counter = counter + 1;
     if counter == 37590        
        i = 1; 
     end
 end
-
+disp('Amount of patients with Sepsis between all the analyzed individuals');
 new_counter
+toc
