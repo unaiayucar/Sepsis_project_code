@@ -1,8 +1,9 @@
 function [measurement_array, exists_measurement, measurement_counter]...
     = general(measurement_array,hadm_id, intervals, start_time,...
     measurement_counter, meassurement_table, out_time)
-
-    if measurement_counter <= height(meassurement_table)
+    
+    row_amount_meassurement_table = height(meassurement_table);
+    if measurement_counter <= row_amount_meassurement_table
        % take new hadmm_id and set variables to start values   
        measurement_hadm_id ...
            = meassurement_table(measurement_counter,2).hadm_id; 
@@ -25,6 +26,15 @@ function [measurement_array, exists_measurement, measurement_counter]...
        if measurement_hadm_id == hadm_id 
           % We analyze the data until new value shows
           while(out == 0) 
+              if measurement_counter >= row_amount_meassurement_table
+                 if exists_measurement == 1
+                     measurement_array(fill_samples_count:end)...
+                         = measurement_array(fill_samples_count -1);
+                 end 
+                 out = 1; 
+                 out2 = 1;
+                 break;
+              end
               % we take the time of the sample taken
               time_of_sample ...
                   = meassurement_table(measurement_counter,3).charttime;
@@ -204,6 +214,15 @@ function [measurement_array, exists_measurement, measurement_counter]...
                      exists_measurement = 1;
                  end
               end
+              if measurement_counter >= row_amount_meassurement_table
+                 if exists_measurement == 1
+                     measurement_array(fill_samples_count:end)...
+                         = measurement_array(fill_samples_count -1);
+                 end 
+                 out = 1; 
+                 out2 = 1;
+                 break;
+              end
               if meassurement_table...
                       (measurement_counter, 2).hadm_id ~= hadm_id
                   if exists_measurement == 1
@@ -211,13 +230,23 @@ function [measurement_array, exists_measurement, measurement_counter]...
                          = measurement_array(fill_samples_count -1);
                   end              
                   out = 1;
+                  break;
               end
 
           end
 
        elseif measurement_hadm_id < hadm_id
-          while(out2 == 0)
+          while(out2 == 0)           
               measurement_counter = measurement_counter + 1;
+              if measurement_counter >= row_amount_meassurement_table
+                if exists_measurement == 1
+                    measurement_array(fill_samples_count:end)...
+                          = measurement_array(fill_samples_count -1);
+                end 
+                out = 1; 
+                out2 = 1;
+                break;
+              end
               if meassurement_table...
                       (measurement_counter, 2).hadm_id == hadm_id
                   % We analyze the data until new value shows
@@ -417,6 +446,15 @@ function [measurement_array, exists_measurement, measurement_counter]...
                              exists_measurement = 1;
                          end
                       end
+                      if measurement_counter >= row_amount_meassurement_table
+                          if exists_measurement == 1
+                               measurement_array(fill_samples_count:end)...
+                                = measurement_array(fill_samples_count -1);
+                          end 
+                          out = 1; 
+                          out2 = 1;
+                          break;
+                      end
                       if meassurement_table...
                               (measurement_counter, 2).hadm_id ~= hadm_id
                           if exists_measurement == 1
@@ -425,11 +463,13 @@ function [measurement_array, exists_measurement, measurement_counter]...
                           end  
                           out = 1;
                           out2 = 1;
+                          break;
                       end
                   end
               elseif meassurement_table(measurement_counter, 2).hadm_id ...
                       > hadm_id
                   out2 = 1;
+                  break;
               end
           end      
        end

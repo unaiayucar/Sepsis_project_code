@@ -11,8 +11,8 @@ image = '2' \
         '.png'
 search_space, problem_size, bits_per_parameter, data = image_conversion.convert_image(search_space, problem_size, image, bits_per_parameter)
 # algorithm configuration
-max_generations = 100
-population_size = 100
+max_generations = 8
+population_size = 300
 clone_factor = 0.1
 num_rand = 2
 mutation_rate = 0  # when mutation rate is 0 the mutation is not altered and follows the normal statistics. if its

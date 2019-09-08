@@ -242,9 +242,9 @@ while(i == 0)
     % plot results
     %plot_function(intervals, sofa_score, sepsis_flag, counter)
     % stop counter for debugging
-%     if counter == 7678
-%        a = 1; 
-%     end
+    if counter == 37579
+        a = 1; 
+    end
     % This is for finishing the analysis
     counter = counter + 1;
     if counter == 37590        
