@@ -1,5 +1,5 @@
 function measurement = standard_measures(intervals)
-measurement = zeros(16,intervals);
+measurement = zeros(15,intervals);
 % creatinine standard
 measurement(1,1:intervals) = 0.85;
 % bilirubin standard
