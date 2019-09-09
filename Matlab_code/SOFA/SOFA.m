@@ -1,5 +1,5 @@
 %% SOFA criteria
-function sofa_score = SOFA(intervals,start_time,out_time,exists_bilirubin,...
+function [sofa_score, sofa_sepsis, position] = SOFA(intervals,start_time,out_time,exists_bilirubin,...
     exists_gcs_motor,exists_gcs_verbal,exists_gcs_eye,...
     exists_creatinine,exists_dopamine,exists_dobutamine,...
     exists_epinephrine,exists_norepinephrine,exists_mbp,...
@@ -10,7 +10,9 @@ function sofa_score = SOFA(intervals,start_time,out_time,exists_bilirubin,...
     norepinephrine_values,mbp_values,platelet_values,fio_values,...
     po2_values,ventilation_values,urine_output_values)
 
-
+    SOFA_reference = 5;
+    sofa_sepsis = 0;
+    position = 0;
     % Lets create first the compound values
     gcs_values = gcs_motor_values + gcs_verbal_values + gcs_eye_values;
     exists_FIO2PO2 = 0;
@@ -98,6 +100,11 @@ function sofa_score = SOFA(intervals,start_time,out_time,exists_bilirubin,...
             elseif platelet_values(sample_every_15) >= 100 && platelet_values(sample_every_15) < 150
                 sofa_score(sample_every_15) = sofa_score(sample_every_15) + 4;
             end
-        end                
+        end
+        if sofa_score(sample_every_15) >= SOFA_reference
+           position = sample_every_15;
+           sofa_sepsis = 1;
+           SOFA_reference = 100;
+        end
     end
 end

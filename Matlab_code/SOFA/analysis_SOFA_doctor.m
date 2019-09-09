@@ -60,6 +60,15 @@ new_counter = 0;
 % arrays to store flags and counters
 flags = zeros(16);
 counters = zeros(16);
+FP = 0;
+FP_counter = 0;
+FN = 0;
+FN_counter = 0;
+TP = 0;
+TP_counter = 0;
+TN = 0;
+TN_counter = 0;
+ROC_stat = zeros(37590,9);
 while(i == 0)
     % every loop adults increase in one, until we get to all of then
     adults_counter = adults_counter + 1;
@@ -218,7 +227,7 @@ while(i == 0)
         po2_values,ventilation_values,...
         urine_output_values]...
         = parse_measurements(measurements);
-    sofa_score = SOFA(intervals,start_time,out_time,...
+    [sofa_score,sofa_sepsis,position] = SOFA(intervals,start_time,out_time,...
         exists_bilirubin,exists_gcs_motor,...
         exists_gcs_verbal,exists_gcs_eye,...
         exists_creatinine,exists_dopamine,...
@@ -236,8 +245,52 @@ while(i == 0)
         po2_values,ventilation_values,...
         urine_output_values);
     % analyse if the patient was diagnosed with Sepsis
-    if sepsis_flag == 1
-       new_counter = new_counter + 1; 
+    if sofa_sepis == 1
+        ROC_stat(adults_counter,1) = 1;
+        ROC_stat(adults_counter,3) = position;
+        if sepsis_flag == 1
+           new_counter = new_counter + 1; 
+           ROC_stat(adults_counter,2) = 1;
+           TP = 1;
+           TP_counter = TP_counter +1;
+           ROC_stat(adults_counter,4) = FP_counter;
+           ROC_stat(adults_counter,5) = TP_counter;
+           ROC_stat(adults_counter,6) = FN_counter;
+           ROC_stat(adults_counter,7) = TN_counter;
+           ROC_stat(adults_counter,8) = TP_counter/(TP_counter + FN_counter);
+           ROC_stat(adults_counter,9) = TN_counter/(TN_counter + FP_counter);
+        else
+           FP = 1;
+           FP_counter = FP_counter +1;
+           ROC_stat(adults_counter,4) = FP_counter;
+           ROC_stat(adults_counter,5) = TP_counter;
+           ROC_stat(adults_counter,6) = FN_counter;
+           ROC_stat(adults_counter,7) = TN_counter;
+           ROC_stat(adults_counter,8) = TP_counter/(TP_counter + FN_counter);
+           ROC_stat(adults_counter,9) = TN_counter/(TN_counter + FP_counter);
+        end
+    else
+        if sepsis_flag == 1
+           new_counter = new_counter + 1; 
+           ROC_stat(adults_counter,2) = 1;
+           FN = 1;
+           FN_counter = FN_counter +1;
+           ROC_stat(adults_counter,4) = FP_counter;
+           ROC_stat(adults_counter,5) = TP_counter;
+           ROC_stat(adults_counter,6) = FN_counter;
+           ROC_stat(adults_counter,7) = TN_counter;
+           ROC_stat(adults_counter,8) = TP_counter/(TP_counter + FN_counter);
+           ROC_stat(adults_counter,9) = TN_counter/(TN_counter + FP_counter);
+        else
+           TN = 1;
+           TN_counter = TN_counter +1;
+           ROC_stat(adults_counter,4) = FP_counter;
+           ROC_stat(adults_counter,5) = TP_counter;
+           ROC_stat(adults_counter,6) = FN_counter;
+           ROC_stat(adults_counter,7) = TN_counter;
+           ROC_stat(adults_counter,8) = TP_counter/(TP_counter + FN_counter);
+           ROC_stat(adults_counter,9) = TN_counter/(TN_counter + FP_counter);
+        end            
     end
     % plot results
     plot_function(intervals, sofa_score, sepsis_flag, counter)
@@ -251,5 +304,6 @@ while(i == 0)
        i = 1; 
     end
 end
+save('saveROC_stat_d_SOFA.mat','ROC_stat');
 
 new_counter

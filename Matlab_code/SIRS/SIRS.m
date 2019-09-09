@@ -1,11 +1,15 @@
 %% SOFA criteria
-function sirs_score = SIRS(intervals,start_time,out_time,...
+function [sirs_score, sirs_sepsis, position] = SIRS(intervals,start_time,out_time,...
     exists_respiratory_rate, exists_pco2,...
     exists_temperature, exists_heart_rate,...
     exists_wbc, sepsis_flag,...
     respiratory_rate_values, pco2_values,...
     temperature_values, heart_rate_values,...
     wbc_values)
+
+    sirs_reference = 2;
+    sirs_sepsis = 0;
+    position = 0;
 
     sirs_score = zeros(intervals,1);
     for sample_every_15 = 1:intervals
@@ -33,7 +37,11 @@ function sirs_score = SIRS(intervals,start_time,out_time,...
                 sirs_score(sample_every_15) = sirs_score(sample_every_15) + 1;             
             end 
         end
-
+        if sirs_score(sample_every_15) >= sirs_reference
+           position = sample_every_15;
+           sirs_sepsis = 1;
+           sirs_reference = 100;
+        end
                      
     end
 end
