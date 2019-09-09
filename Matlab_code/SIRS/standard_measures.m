@@ -4,7 +4,7 @@ measurement = zeros(5,intervals);
 % Respiration Rate
 measurement(1,1:intervals) = 16;
 % PCO2
-measurement(2,1:intervals) = 40;
+measurement(2,1:intervals) = 45;
 % Temperature
 measurement(3,1:intervals) = 36;
 % Heart Rate
