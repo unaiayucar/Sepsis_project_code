@@ -246,7 +246,7 @@ while(i == 0)
         po2_values,ventilation_values,...
         urine_output_values);
     
-    if sofa_sepis == 1
+    if sofa_sepsis == 1
         ROC_stat(adults_counter,1) = 1;
         ROC_stat(adults_counter,3) = position;
         if sepsis_flag == 1
@@ -308,6 +308,4 @@ while(i == 0)
     end
 end
 save('saveROC_stat_SOFA.mat','ROC_stat');
-disp('Amount of patients with Sepsis between all the analyzed individuals');
-new_counter
 toc

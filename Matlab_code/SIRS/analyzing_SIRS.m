@@ -12,7 +12,7 @@
 adults_counter = 0;
 
 % Generating parameter counters
-
+tic
 % RESPIRATION
 respiratory_rate_counter = 1;
 pco2_counter = 1;
@@ -189,4 +189,4 @@ while(i == 0)
     end
 end
 save('saveROC_stat_SIRS.mat','ROC_stat');
-new_counter
+toc

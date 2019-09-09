@@ -13,7 +13,7 @@ adults_counter = 0;
 % Size of the tables
 [bilirubin_rows, bilirubin_columns] = size(bilirubin_table);
 % Generating parameter counters
-
+tic
 % RESPIRATION
 fio2_counter = 1;
 po2_counter = 1;
@@ -245,7 +245,7 @@ while(i == 0)
         po2_values,ventilation_values,...
         urine_output_values);
     % analyse if the patient was diagnosed with Sepsis
-    if sofa_sepis == 1
+    if sofa_sepsis == 1
         ROC_stat(adults_counter,1) = 1;
         ROC_stat(adults_counter,3) = position;
         if sepsis_flag == 1
@@ -305,5 +305,4 @@ while(i == 0)
     end
 end
 save('saveROC_stat_d_SOFA.mat','ROC_stat');
-
-new_counter
+toc
