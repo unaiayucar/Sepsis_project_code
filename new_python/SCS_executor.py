@@ -12,3 +12,6 @@ population_size = 10
 SOFA = True
 
 best = SCS_algorithm.search(max_generations, population_size, data,SOFA)
+
+
+

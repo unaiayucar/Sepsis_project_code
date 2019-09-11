@@ -16,10 +16,84 @@ def add_random(population, population_size, slope):
 
 def execute_SOFA(list_of_parameters, passed):
 
+    SOFA_reference = 5
+    SOFA_counter = 0
+    gcs_values_L = list_of_parameters[1][2] + list_of_parameters[1][3] + list_of_parameters[1][4]
+    if gcs_values_L <= 14 and gcs_values_L >= 13:
+        SOFA_counter = SOFA_counter + 1
+    elif gcs_values_L <= 12 and gcs_values_L >= 10:
+        SOFA_counter = SOFA_counter + 2
+    elif gcs_values_L <= 9 and gcs_values_L >= 6:
+        SOFA_counter = SOFA_counter + 3
+    elif gcs_values_L < 6:
+        SOFA_counter = SOFA_counter + 4
+
+    FIO2PO2 = list_of_parameters[1][11] / list_of_parameters[0][12]
+
+    if FIO2PO2 < 400 and FIO2PO2 >= 300:
+        SOFA_counter = SOFA_counter + 1
+    elif FIO2PO2 < 300:
+        SOFA_counter = SOFA_counter + 2
+
+    if list_of_parameters[0][1] >=1.2 and list_of_parameters[0][1] < 2:
+        SOFA_counter = SOFA_counter + 1
+    elif list_of_parameters[0][1] >= 2 and list_of_parameters[0][1] < 6:
+        SOFA_counter = SOFA_counter + 2
+    elif list_of_parameters[0][1] >= 6 and list_of_parameters[0][1] < 12:
+        SOFA_counter = SOFA_counter + 3
+    elif list_of_parameters[0][1] >= 12:
+        SOFA_counter = SOFA_counter + 4
+
+    if list_of_parameters[0][0] >= 1.2 and list_of_parameters[0][0] < 2:
+        SOFA_counter = SOFA_counter + 1
+    elif list_of_parameters[0][0] >= 2 and list_of_parameters[0][0] < 3.5:
+        SOFA_counter = SOFA_counter + 2
+    elif list_of_parameters[0][0] >= 3.5 and list_of_parameters[0][0] < 5:
+        SOFA_counter = SOFA_counter + 3
+    elif list_of_parameters[0][0] >= 5:
+        SOFA_counter = SOFA_counter + 4
+
+    if list_of_parameters[1][10] >= 100 and list_of_parameters[1][10] < 150:
+        SOFA_counter = SOFA_counter + 1
+    elif list_of_parameters[1][10] >= 50 and list_of_parameters[1][10] < 100:
+        SOFA_counter = SOFA_counter + 2
+    elif list_of_parameters[1][10] >= 20 and list_of_parameters[1][10] < 50:
+        SOFA_counter = SOFA_counter + 3
+    elif list_of_parameters[1][10] < 20:
+        SOFA_counter = SOFA_counter + 4
+
+    if list_of_parameters[1][9] < 70:
+        SOFA_counter = SOFA_counter + 1
+    elif (list_of_parameters[0][5] <= 5 and list_of_parameters[0][5] > 0) or (list_of_parameters[0][6] > 0):
+        SOFA_counter = SOFA_counter + 2
+    elif (list_of_parameters[0][5] <= 15 and list_of_parameters[0][5] > 5) or (list_of_parameters[0][7] <= 0.1 and list_of_parameters[0][7] > 0) or (list_of_parameters[0][8] <= 0.1 and list_of_parameters[0][8] > 0):
+        SOFA_counter = SOFA_counter + 3
+    elif (list_of_parameters[0][5] > 15) or (list_of_parameters[0][7] > 0.1) or (list_of_parameters[0][8] > 0.1):
+        SOFA_counter = SOFA_counter + 4
+
+
+    if SOFA_reference <= SOFA_counter:
+        passed = True
     return passed
 
 def execute_SIRS(list_of_parameters, passed):
+    SIRS_reference = 2
+    SIRS_counter = 0
 
+    if list_of_parameters[0][0] > 20 or list_of_parameters[1][1] < 43:
+        SIRS_counter = SIRS_counter +1
+
+    if list_of_parameters[0][2] > 38 or list_of_parameters[1][2] < 36:
+        SIRS_counter = SIRS_counter +1
+
+    if list_of_parameters[0][3] > 90:
+        SIRS_counter = SIRS_counter +1
+
+    if list_of_parameters[1][4] < 4 or list_of_parameters[0][4] > 12:
+        SIRS_counter = SIRS_counter +1
+
+    if SIRS_counter >= SIRS_reference:
+        passed = True
     return passed
 
 
