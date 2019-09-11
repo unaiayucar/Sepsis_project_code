@@ -70,6 +70,8 @@ TP_counter = 0;
 TN = 0;
 TN_counter = 0;
 ROC_stat = zeros(37590,9);
+sp = 0;
+counter2 = 3;
 while(i == 0)
     % every loop adults increase in one, until we get to all of then
     adults_counter = adults_counter + 1;
@@ -302,10 +304,79 @@ while(i == 0)
     % end
     % This is for finishing the analysis
     
+%     if counter == 10
+%         if sepsis_flag == 1
+%             
+%             sepsis_case = zeros(30,intervals);
+%             
+%             sepsis_case(1,:) = exists_bilirubin;
+%             sepsis_case(2,:) = bilirubin_values;
+%             sepsis_case(3,:) = exists_creatinine 
+%             sepsis_case(4,:) = creatinine_values
+%             sepsis_case(5,:) = exists_gcs_motor 
+%             sepsis_case(6,:) = gcs_motor_values
+%             sepsis_case(7,:) = exists_gcs_verbal 
+%             sepsis_case(8,:) = gcs_verbal_values
+%             sepsis_case(9,:) = exists_gcs_eye
+%             sepsis_case(10,:) = gcs_eye_values
+%             sepsis_case(11,:) = exists_dopamine
+%             sepsis_case(12,:) = dopamine_values
+%             sepsis_case(13,:) = exists_dobutamine
+%             sepsis_case(14,:) = dobutamine_values
+%             sepsis_case(15,:) = exists_epinephrine
+%             sepsis_case(16,:) = epinephrine_values
+%             sepsis_case(17,:) = exists_norepinephrine
+%             sepsis_case(18,:) = norepinephrine_values
+%             sepsis_case(19,:) = exists_mbp
+%             sepsis_case(20,:) = mbp_values
+%             sepsis_case(21,:) = exists_platelet
+%             sepsis_case(22,:) = platelet_values
+%             sepsis_case(23,:) = exists_fio
+%             sepsis_case(24,:) = fio_values
+%             sepsis_case(25,:) = exists_po2
+%             sepsis_case(26,:) = po2_values
+%             sepsis_case(27,:) = exists_ventilation
+%             sepsis_case(28,:) = ventilation_values
+%             sepsis_case(29,:) = exists_urine_output
+%             sepsis_case(30,:) = urine_output_values
+%             
+%         elseif
+%             
+%         end
+%         
+%     end
+
+    if sepsis_flag == 1
+        sp = sp +1;
+    end
+    if sp == 3
+        if sepsis_flag == 1
+        %sp = sp +1;
+        counter2 = counter2 + 1;
+        disp('seps')
+        plot_function(intervals, sofa_score, sepsis_flag, counter2)
+        end
+    elseif sp >= 6
+        if sepsis_flag ==1
+        counter2 = counter2 + 1;
+        disp('seps')
+        plot_function(intervals, sofa_score, sepsis_flag, counter2)
+        else
+          counter2 = counter2 + 1;
+        disp('no seps')
+        plot_function(intervals, sofa_score, sepsis_flag, counter2)  
+        end
+    end
+    if counter2 == 6
+        i = 1;
+    end
+        
+    
     counter = counter + 1;
     if counter == 37590        
        i = 1; 
     end
 end
+sp
 save('saveROC_stat_SOFA.mat','ROC_stat');
 toc

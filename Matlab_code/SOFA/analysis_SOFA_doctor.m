@@ -68,6 +68,8 @@ TP = 0;
 TP_counter = 0;
 TN = 0;
 TN_counter = 0;
+sp = 0;
+counter2 = 3;
 ROC_stat = zeros(37590,9);
 while(i == 0)
     % every loop adults increase in one, until we get to all of then
@@ -299,6 +301,31 @@ while(i == 0)
     %   i = 1; 
     % end
     % This is for finishing the analysis
+    if sepsis_flag == 1
+        sp = sp +1;
+    end
+    if sp == 3
+        if sepsis_flag == 1
+        %sp = sp +1;
+        counter2 = counter2 + 1;
+        disp('seps')
+        plot_function(intervals, sofa_score, sepsis_flag, counter2)
+        end
+    elseif sp >= 6
+        if sepsis_flag ==1
+        counter2 = counter2 + 1;
+        disp('seps')
+        plot_function(intervals, sofa_score, sepsis_flag, counter2)
+        else
+          counter2 = counter2 + 1;
+        disp('no seps')
+        plot_function(intervals, sofa_score, sepsis_flag, counter2)  
+        end
+    end
+    if counter2 == 6
+        i = 1;
+    end
+    
     counter = counter + 1;
     if counter == 37590        
        i = 1; 
