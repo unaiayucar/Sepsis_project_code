@@ -179,30 +179,30 @@ while(i == 0)
         end            
     end
     
-%     if sepsis_flag == 1
-%         sp = sp +1;
-%     end
-%     if sp == 3
-%         if sepsis_flag == 1
-%         %sp = sp +1;
-%         counter2 = counter2 + 1;
-%         disp('seps')
-%         plot_function(intervals, sirs_score, sepsis_flag, counter2)
-%         end
-%     elseif sp >= 6
-%         if sepsis_flag ==1
-%         counter2 = counter2 + 1;
-%         disp('seps')
-%         plot_function(intervals, sirs_score, sepsis_flag, counter2)
-%         else
-%           counter2 = counter2 + 1;
-%         disp('no seps')
-%         plot_function(intervals, sirs_score, sepsis_flag, counter2)  
-%         end
-%     end
-%     if counter2 == 9
-%         i = 1;
-%     end
+    if sepsis_flag == 1
+        sp = sp +1;
+    end
+    if sp == 3
+        if sepsis_flag == 1
+        %sp = sp +1;
+        counter2 = counter2 + 1;
+        disp('seps')
+        plot_function(intervals, sirs_score, sepsis_flag, counter2)
+        end
+    elseif sp >= 6
+        if sepsis_flag ==1
+        counter2 = counter2 + 1;
+        disp('seps')
+        plot_function(intervals, sirs_score, sepsis_flag, counter2)
+        else
+          counter2 = counter2 + 1;
+        disp('no seps')
+        plot_function(intervals, sirs_score, sepsis_flag, counter2)  
+        end
+    end
+    if counter2 == 9
+        i = 1;
+    end
     % plot results
     %plot_function(intervals, sirs_score, sepsis_flag, counter)
     % stop counter for debugging

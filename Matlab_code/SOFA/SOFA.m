@@ -98,7 +98,7 @@ function [sofa_score, sofa_sepsis, position] = SOFA(intervals,start_time,out_tim
             elseif platelet_values(sample_every_15) >= 50 && platelet_values(sample_every_15) < 100
                 sofa_score(sample_every_15) = sofa_score(sample_every_15) + 2;
             elseif platelet_values(sample_every_15) >= 100 && platelet_values(sample_every_15) < 150
-                sofa_score(sample_every_15) = sofa_score(sample_every_15) + 4;
+                sofa_score(sample_every_15) = sofa_score(sample_every_15) + 1;
             end
         end
         if sofa_score(sample_every_15) >= SOFA_reference
